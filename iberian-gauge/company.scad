@@ -4,7 +4,10 @@ $height = 20;
 $border = 2;
 
 
-module emptyBox(x, y, h, border) {
+module emptyBox(x, y, h, border, lowBorder) {
+    if (lowBorder == 0) {
+        lowBorder = border;
+    }
     difference() {
         cube([x+(border*2), y+(border*2), h]);
         translate([border, border, border]) 
@@ -45,14 +48,14 @@ module baseBox() {
             cube([$card_lx*3, $border, 5]);
         translate([-1,($card_ly+$border)*2+1,16])
             cube([$card_lx*3, $border, 5]);
-        translate([$card_lx/3,$card_ly, $height-3])
-            cube([27,$border*3, 4]);
+        translate([$card_lx/3.7,$card_ly, $height-3])
+            cube([37,$border*3, 4]);
     }
 }
 
 module lidBase() {
     translate ([$card_lx+3*$border,0,0])
-        emptyBox($card_lx+$border, 2*$card_ly+2*$border, 5,1);
+        emptyBox($card_lx+$border, 2*$card_ly+2*$border, 5,1, $border);
 }
 
 baseBox();

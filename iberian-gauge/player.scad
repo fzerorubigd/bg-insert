@@ -1,16 +1,19 @@
-$card_lx = 72;
-$card_ly = 51;
+$card_lx = 51;
+$card_ly = 72;
 $height = 20;
 $border = 2;
 
-
-module emptyBox(x, y, h, border) {
+module emptyBox(x, y, h, border, lowBorder) {
+    if (lowBorder == 0) {
+        lowBorder = border;
+    }
     difference() {
         cube([x+(border*2), y+(border*2), h]);
         translate([border, border, border]) 
             cube([x, y, h]);
     }
 }
+
 
 module player() {
     difference() {
@@ -28,7 +31,7 @@ module player() {
 
 module lidPlayer() {
     translate ([$card_lx+3*$border,0,0])
-        emptyBox($card_lx+$border, $card_ly+$border-1, 5,1);
+        emptyBox($card_lx+$border, $card_ly+$border-1, 5,1, $border);
 }
 
 player();
