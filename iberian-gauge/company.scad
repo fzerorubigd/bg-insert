@@ -5,12 +5,10 @@ $border = 2;
 
 
 module emptyBox(x, y, h, border, lowBorder) {
-    if (lowBorder == 0) {
-        lowBorder = border;
-    }
+    lower = (is_undef(lowBorder)) ? border : lowBorder;
     difference() {
         cube([x+(border*2), y+(border*2), h]);
-        translate([border, border, border]) 
+        translate([border, border, lower]) 
             cube([x, y, h]);
     }
 }

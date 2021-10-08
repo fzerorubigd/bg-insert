@@ -4,14 +4,13 @@ $height = 20;
 $border = 2;
 
 module emptyBox(x, y, h, border, lowBorder) {
-    if (lowBorder == 0) {
-        lowBorder = border;
-    }
+    lower = (is_undef(lowBorder)) ? border : lowBorder;
     difference() {
         cube([x+(border*2), y+(border*2), h]);
-        translate([border, border, border]) 
+        translate([border, border, lower]) 
             cube([x, y, h]);
     }
+
 }
 
 
@@ -26,6 +25,11 @@ module player() {
             cube([$card_lx*3, $border, 5]);
         translate([-1,$card_ly+$border,16])
             cube([$card_lx*3, $border, 5]);
+        translate([($card_lx+($border*2))/2, -1, $height+5]) {
+            rotate([-90,0,0]){
+                cylinder(h=10, r = 10+1);
+            }
+        }
     }
 }
 
