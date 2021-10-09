@@ -1,4 +1,4 @@
-$card_lx = 51;
+$card_lx = 50;
 $card_ly = 72;
 $height = 20;
 $border = 2;
